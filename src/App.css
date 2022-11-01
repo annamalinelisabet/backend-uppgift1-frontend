@@ -1,38 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background: #E2E2E2;
+}
+
 .App {
-  text-align: center;
+  margin: 4rem auto;
+  width: 90%;
+  max-width: 600px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-div {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 3rem;
+}
+
+.btn {
+  border: 2px solid transparent;
+  background: white;
+  color: #7F949F;
+  padding-block: .8em;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  border: 2px solid #7F949F;
+}
+
+.btn-active {
+  background: #7F949F;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.btn-new {
+  background: #847F9F;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.btn-new:hover {
+  opacity: 80%;
+}
+
+.btn-new:active {
+  opacity: 100%;
+}
+
+input, textarea {
+  width: 100%;
+  font-size: 1rem;
+  padding: .6em;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin: .3rem 0 1.5rem 0;
+  resize: none;
+  border: 1px solid #8F8D8D;
+}
+
+label {
+  color: #847F9F;
+}
+
+/* ---------- CARD ------------*/
+
+.Card {
+  background: white;
+  padding: 1.5rem;
+  border: 1px solid #8F8D8D;
+  height: 200px;
+}
+
+.card-title {
+  text-transform: uppercase;
+  color: #7F949F;
+}
+
+.date-text {
+  color: #ACAAAA;
+}
+
+.desc-text {
+  display: block;
+  margin-block: 1rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.status-div {
+  display: flex;
+}
+
+.status-text {
+  margin-right: .5rem;
+}
+
+.status-not-active {
+  color: #A8502B;
+}
+
+.status-active {
+  color: #7F949F;
+}
+
+.btn-card {
+  padding: .4em 2em;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-card:hover {
+  opacity: 80%;
+}
+
+.btn-card:active {
+  opacity: 100%;
+}
+
+.btn-start {
+  background: #7F949F;
+}
+
+.btn-end {
+  background: #A8502B;
+}
+
+/* ------- MODAL --------- */
+
+.modal-bg {
+  background: rgba(0, 0, 0, 0.471);
+  position: fixed;
+  inset: 0;
+  /* position: relative; */
+}
+
+.modal {
+  margin: 17vh auto;
+  background: white;
+  height: 250px;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #8F8D8D;
+  z-index: 1;
+
+}
+
+.modal h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.button-div {
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
 }
