@@ -2,23 +2,29 @@ import { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Comment from '../components/Comment'
+import Modal from '../components/ModalDelete'
 
 const DetailView = () => {
 
     const { id } = useParams()
+
     const [issue, setIssue] = useState('')
-    const [showForm, setShowForm] = useState(false)
     const [comment, setComment] = useState('')
+    const [status, setStatus] = useState('')
+
+    const [showForm, setShowForm] = useState(false)
+    const [showModal, setShowModal] = useState(false)
     const [error, setError] = useState(false)
 
     const getIssue = useCallback(async () => {
       const res = await axios.get(`https://localhost:7135/api/Issues/${id}`)
       setIssue(res.data)
+      setStatus(res.data.status.id)
     }, [id])
   
     useEffect(() => {
       getIssue()
-    }, [getIssue, comment])
+    }, [getIssue, comment, status])
 
     const handleSubmit = async e => {
         e.preventDefault()
@@ -49,14 +55,37 @@ const DetailView = () => {
         }    
     }
 
+    const updateIssue = async statusId => {
+    
+      const json = JSON.stringify({ id, statusId })
+      const res = await fetch(`https://localhost:7135/api/Issues/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: json
+      })
+      if(res.status === 200) {
+        setStatus(statusId)
+      }
+    }
+
+
     return (
       <>
+          { showModal && <Modal setShowModal={setShowModal} updateIssue={updateIssue}/> }
           { issue && 
-            <div>
-              <h1 className='detail-title'>{issue.title}</h1>
-              <small className='date-text'>Ärende skapat: {issue.created.slice(0, 10)} kl {issue.created.slice(11, 16)}</small>
+            <div className='Detail'>
+              <div className='detail-top-div'>
+                <h1 className='detail-title'>{issue.title}</h1>
+              </div>
+              { status === 1 && <small className='date-text'>Ärende skapat: {issue.created.slice(0, 10)} kl {issue.created.slice(11, 16)}</small>}
+              { status === 2 && <small className='date-text'>Ärende påbörjat: {issue.updated.slice(0, 10)} kl {issue.updated.slice(11, 16)}</small>}
+              { status === 3 && <small className='error'>Ärende avslutat: {issue.updated.slice(0, 10)} kl {issue.updated.slice(11, 16)}</small>}
               <p className='detail-description'>{issue.description}</p>
-              <div className='line'></div>
+              { status === 1 && <button className='btn' onClick={() => updateIssue(2)}>Påbörja ärende</button> }
+              { status === 2 && <button className='btn btn-delete' onClick={() => setShowModal(true)} >Avsluta ärende</button> }
+              { status === 3 && <div className="line"></div>  }                                 
               <h3 className='detail-header'>Kundinfo</h3>
               <div className='customer-info'>
                 <div className='customer'>
@@ -75,7 +104,7 @@ const DetailView = () => {
               {
                 issue.comments.map(comment => ( <Comment key={comment.id} comment={comment}/> ))
               }
-              { !showForm &&
+              { !showForm && status !== 3 &&
                 <button className='btn btn-new' onClick={() => setShowForm(true)}>Lägg till en kommentar</button>
               }
               </div>

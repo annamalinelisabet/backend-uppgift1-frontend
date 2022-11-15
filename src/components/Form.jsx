@@ -48,15 +48,15 @@ const Form = ({ setShowAll }) => {
   return (
       <>
         { customerFormOpen && <ModalForm setCustomerFormOpen={setCustomerFormOpen}/>}
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>               
             <label htmlFor="customer" id='customer'>Kund</label>
-            <select onChange={e => setCustomerId(e.target.value)}>
-              <option value={0}>-- Ange kund --</option>
-              {
-                customers.map(customer => <option key={customer.id} value={customer.id}>{customer.firstName} {customer.lastName}</option>)
-              }
-            </select>
-            <p className='customer-text'>Finns inte kunden i listan? <span onClick={() => setCustomerFormOpen(true)}>Lägg till en ny.</span></p>
+              <select onChange={e => setCustomerId(e.target.value)}>
+                <option value={0}>-- Ange kund --</option>
+                {
+                  customers.map(customer => <option key={customer.id} value={customer.id}>{customer.firstName} {customer.lastName}</option>)
+                }
+              </select>
+            <p className='customer-text'>Finns inte kunden i listan? <span className='span' onClick={() => setCustomerFormOpen(true)}>Lägg till en ny.</span></p>
             <div>
               <label htmlFor="title" id='title'>Rubrik</label>
               <input type="text" name='title' onChange={e => setTitle(e.target.value)} value={title} placeholder='Ange en rubrik för ärendet...'/>

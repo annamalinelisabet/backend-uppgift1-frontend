@@ -73,6 +73,7 @@ label {
 select {
   padding: .6em;
   color: #8F8D8D;
+  font-size: .9rem;
 }
 
 .customer-text {
@@ -80,12 +81,17 @@ select {
   margin: .2rem 0 1rem 0;
 }
 
-span {
+.span {
   cursor: pointer;
   text-decoration: underline;
 }
 
-
+.error {
+  margin-top: .5rem;
+  text-align: center;
+  color: #A8502B;
+  font-weight: bold;
+}
 
 
 /* ---------- CARD ------------*/
@@ -105,6 +111,10 @@ span {
 .date-text {
   color: #ACAAAA;
   display: block;
+}
+
+.status-text {
+  font-weight: 600;
 }
 
 .card-flex {
@@ -173,10 +183,20 @@ span {
   color: #847F9F;
 }
 
+.modal-text {
+  display: block;
+  text-align: center;
+}
+
 .button-div {
   display: flex;
   justify-content: center;
   gap: .5rem;
+  margin-top: 3rem;
+}
+
+.btn-end {
+  background: #A8502B;
 }
 
 .new-customer {
@@ -184,14 +204,9 @@ span {
   padding: 2rem 5rem;
 }
 
-.error {
-  margin-top: .5rem;
-  text-align: center;
-  color: #A8502B;
-  font-weight: bold;
+.delete-popup {
+  padding: 4rem 2rem 2rem 2rem;
 }
-
-
 
 /* ------- DETAIL --------- */
 
@@ -222,7 +237,7 @@ span {
 }
 
 .detail-description {
-  margin-top: 1rem;
+  margin: 1rem 0 2rem 0;
 }
 
 .customer-info {
@@ -231,6 +246,11 @@ span {
 
 .customer-name {
   text-transform: capitalize;
+}
+
+.btn-delete {
+  background: #A8502B;
+  color: white;
 }
 
 

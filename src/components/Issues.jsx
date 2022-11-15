@@ -4,7 +4,6 @@ import IssueCard from './IssueCard'
 
 const Issues = () => {
 
-
   const [issues, setIssues] = useState([])
 
   const getIssues = useCallback(async () => {
@@ -13,14 +12,12 @@ const Issues = () => {
   }, [])
 
   useEffect(() => {
-    getIssues()
+    getIssues()    
   }, [getIssues])
 
   return (
     <div>
-      { 
-        [...issues].reverse().map(issue => <IssueCard key={issue.id} issue={issue} />)
-      }
+      { issues && [...issues].reverse().map(issue => <IssueCard key={issue.id} issue={issue} />) }
     </div>
   )
 }
