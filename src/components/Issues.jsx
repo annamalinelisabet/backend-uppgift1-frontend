@@ -17,7 +17,10 @@ const Issues = () => {
 
   return (
     <div>
-      { issues && [...issues].reverse().map(issue => <IssueCard key={issue.id} issue={issue} />) }
+      { 
+        issues.length   ? [...issues].reverse().map(issue => <IssueCard key={issue.id} issue={issue} />)
+                        : <p className='customer-text'>Det finns inga ärenden...</p>
+      }
     </div>
   )
 }

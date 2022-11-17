@@ -9,7 +9,7 @@ const Form = ({ setShowAll }) => {
   const [customers, setCustomers] = useState([])
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
-  const [customerId, setCustomerId] = useState('')
+  const [customerId, setCustomerId] = useState(0)
 
   const getCustomers = useCallback(async () => {
     const res = await axios.get('https://localhost:7135/api/Customers')
@@ -28,7 +28,6 @@ const Form = ({ setShowAll }) => {
     }
     
     const json = JSON.stringify({ title, description, customerId})
-    console.log(json)
     const res = await fetch('https://localhost:7135/api/Issues', {
       method: 'POST',
       headers: {
